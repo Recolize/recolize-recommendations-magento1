@@ -141,36 +141,12 @@
             <general>
                 <enable_extension>1</enable_extension>
             </general>
-            <product_list_page>
-                <active>1</active>
-                <position_on_page>main_column_bottom</position_on_page>
-                <shown_items_count>3</shown_items_count>
-                <maximum_recommended_items>10</maximum_recommended_items>
-            </product_list_page>
-            <product_detail_page>
-                <active>1</active>
-                <position_on_page>main_column_top</position_on_page>
-                <shown_items_count>3</shown_items_count>
-                <maximum_recommended_items>10</maximum_recommended_items>
-            </product_detail_page>
-            <cart_page>
-                <active>0</active>
-                <position_on_page>main_column_top</position_on_page>
-                <shown_items_count>4</shown_items_count>
-                <maximum_recommended_items>10</maximum_recommended_items>
-            </cart_page>
-            <order_success_page>
-                <active>1</active>
-                <position_on_page>main_column_bottom</position_on_page>
-                <shown_items_count>4</shown_items_count>
-                <maximum_recommended_items>10</maximum_recommended_items>
-            </order_success_page>
-            <customer_account_page>
-                <active>1</active>
-                <position_on_page>main_column_bottom</position_on_page>
-                <shown_items_count>4</shown_items_count>
-                <maximum_recommended_items>10</maximum_recommended_items>
-            </customer_account_page>
+            <product_feed>
+                <enable_export>1</enable_export>
+                <file_path>/media</file_path>
+                <cron_schedule>34 3 * * *</cron_schedule>
+                <exclude_product_attributes>description</exclude_product_attributes>
+            </product_feed>
         </recolize_recommendation_engine>
     </default>
     <crontab>

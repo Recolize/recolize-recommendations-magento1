@@ -85,15 +85,26 @@ Mh9NJiJDpR9dx+J/HMEc3NRXgooAAAAASUVORK5CYII=
             <show_in_store>1</show_in_store>
             <groups>
                 <general translate="label">
-                    <label>General</label>
+                    <label>General Settings</label>
                     <sort_order>1</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
+                        <note translate="label">
+                            <label></label>
+                            <frontend_type>note</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                    <comment><![CDATA[
+<ul class="messages"><li class="notice-msg"><ul><li>Don't have a Recolize account yet?<br />You can use Recolize Recommendation Engine for free - just register at <a href="https://www.recolize.com/register" target="_blank">our website</a>.</li></ul></li></ul>]]>
+                    </comment>
+                        </note>
                         <enable_extension translate="label comment">
                             <label>Enable Extension</label>
-                            <comment><![CDATA[If set to 'Yes' the BESUGRE Recommendation extension is enabled and generates product recommendations according to the below mentioned configuration options and the recommendation engine configuration in the BESUGRE Recommendation tool (menu <em>Promotions / BESUGRE Recommendation</em>).<br />If set to 'No' the extension is completely disabled.]]></comment>
+                            <comment><![CDATA[If set to 'Yes' the Recolize Recommendation Engine extension is enabled and generates product recommendations according to the below mentioned configuration options and the recommendation engine configuration in the <a href="https://tool.recolize.com" target="_blank">Recolize Tool</a>.<br />If set to 'No' the extension is completely disabled.]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
@@ -101,308 +112,47 @@ Mh9NJiJDpR9dx+J/HMEc3NRXgooAAAAASUVORK5CYII=
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enable_extension>
+                        <javascript_snippet translate="label comment">
+                            <label>JavaScript Snippet Code</label>
+                            <comment><![CDATA[Please enter the JavaScript snippet code here that you got from your domain settings in the <a href="https://tool.recolize.com/domains" target="_blank">Recolize Tool</a>.]]></comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enable_extension>1</enable_extension></depends>
+                        </javascript_snippet>
                     </fields>
                 </general>
-                <product_list_page translate="label">
-                    <label>Product list recommendation configuration</label>
+                <product_feed translate="label">
+                    <label>Recolize Product Feed Settings</label>
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <active translate="label comment">
-                            <label>Show recommendations on product lists</label>
-                            <comment><![CDATA[If enabled product recommendations will be shown on product list (=category) pages. The configuration can be done by the below mentioned options.]]></comment>
+                        <enable_export translate="label comment">
+                            <label>Enable Product Feed</label>
+                            <comment><![CDATA[If set to 'Yes' the Recolize Product Feed will be generated each night. This is required for the Recolize Recommendation Engine to work.<br />You can set this setting to 'No' if you already have other product feeds, like Google Shopping, CSV-based product exports, etc. Then you have to enter these feeds into the <a href="https://tool.recolize.com/domains" target="_blank">Recolize Tool</a>.]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </active>
-                        <title translate="label comment">
-                            <label>Title</label>
-                            <comment><![CDATA[Optionally specify the title of the recommendation block, e.g. 'Customers who bought this also bought..'. If left empty the block shows no title above the recommended products.]]></comment>
+                        </enable_export>
+                        <file_path translate="label comment">
+                            <label>Path to the Product Feed</label>
+                            <comment><![CDATA[Path relative to the Magento root folder where the product export file will be saved to. This directory must be writable for the webservice user.]]></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </title>
-                        <position_on_page translate="label comment">
-                            <label>Position on page</label>
-                            <comment><![CDATA[Specify the position of the recommendation block depending on the column and vertical alignment. Depending on your current Magento theme not all positions may be available.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>recolize_recommendation/adminhtml_positiononpage</source_model>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </position_on_page>
-                        <shown_items_count translate="label comment">
-                            <label>Items to show at once</label>
-                            <comment><![CDATA[How many items should be visible to the user in the recommendation block?<br />Please note that this setting should be chosen depending on the <em>position on page</em>. Usually for a position in the main column ca. 5 - 8 visible items are recommended. In contrast in the left or right column displaying only 1 item at a time might be more attractive.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </shown_items_count>
-                        <maximum_recommended_items translate="label comment">
-                            <label>Maximum recommended items</label>
-                            <comment><![CDATA[Specify the maximum number of recommended items that should be shown in total.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </maximum_recommended_items>
+                            <depends><enable_export>1</enable_export></depends>
+                        </file_path>
                     </fields>
-                </product_list_page>
-                <product_detail_page>
-                    <label>Product detail page recommendation configuration</label>
-                    <sort_order>20</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <active translate="label comment">
-                            <label>Show recommendations on product detail page</label>
-                            <comment><![CDATA[If enabled product recommendations will be shown on product detail pages. The configuration can be done by the below mentioned options.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </active>
-                        <title translate="label comment">
-                            <label>Title</label>
-                            <comment><![CDATA[Optionally specify the title of the recommendation block, e.g. 'Customers who bought this also bought..'. If left empty the block shows no title above the recommended products.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </title>
-                        <position_on_page translate="label comment">
-                            <label>Position on page</label>
-                            <comment><![CDATA[Specify the position of the recommendation block depending on the column and vertical alignment. Depending on your current Magento theme not all positions may be available.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>recolize_recommendation/adminhtml_positiononpage</source_model>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </position_on_page>
-                        <shown_items_count translate="label comment">
-                            <label>Items to show at once</label>
-                            <comment><![CDATA[How many items should be visible to the user in the recommendation block?<br />Please note that this setting should be chosen depending on the <em>position on page</em>. Usually for a position in the main column ca. 5 - 8 visible items are recommended. In contrast in the left or right column displaying only 1 item at a time might be more attractive.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </shown_items_count>
-                        <maximum_recommended_items translate="label comment">
-                            <label>Maximum recommended items</label>
-                            <comment><![CDATA[Specify the maximum number of recommended items that should be shown in total.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </maximum_recommended_items>
-                    </fields>
-                </product_detail_page>
-                <cart_page>
-                    <label>Cart page recommendation configuration</label>
-                    <sort_order>30</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <active translate="label comment">
-                            <label>Show recommendations on cart page</label>
-                            <comment><![CDATA[If enabled product recommendations will be shown on the shopping cart page. The configuration can be done by the below mentioned options.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </active>
-                        <title translate="label comment">
-                            <label>Title</label>
-                            <comment><![CDATA[Optionally specify the title of the recommendation block, e.g. 'Customers who bought this also bought..'. If left empty the block shows no title above the recommended products.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </title>
-                        <position_on_page translate="label comment">
-                            <label>Position on page</label>
-                            <comment><![CDATA[Specify the position of the recommendation block depending on the column and vertical alignment. Depending on your current Magento theme not all positions may be available.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>recolize_recommendation/adminhtml_positiononpage</source_model>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </position_on_page>
-                        <shown_items_count translate="label comment">
-                            <label>Items to show at once</label>
-                            <comment><![CDATA[How many items should be visible to the user in the recommendation block?<br />Please note that this setting should be chosen depending on the <em>position on page</em>. Usually for a position in the main column ca. 5 - 8 visible items are recommended. In contrast in the left or right column displaying only 1 item at a time might be more attractive.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </shown_items_count>
-                        <maximum_recommended_items translate="label comment">
-                            <label>Maximum recommended items</label>
-                            <comment><![CDATA[Specify the maximum number of recommended items that should be shown in total.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </maximum_recommended_items>
-                    </fields>
-                </cart_page>
-                <order_success_page>
-                    <label>Order success page recommendation configuration</label>
-                    <sort_order>40</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <active translate="label comment">
-                            <label>Show recommendations on order success page</label>
-                            <comment><![CDATA[If enabled product recommendations will be shown on the order success page. The configuration can be done by the below mentioned options.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </active>
-                        <title translate="label comment">
-                            <label>Title</label>
-                            <comment><![CDATA[Optionally specify the title of the recommendation block, e.g. 'Customers who bought this also bought..'. If left empty the block shows no title above the recommended products.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </title>
-                        <position_on_page translate="label comment">
-                            <label>Position on page</label>
-                            <comment><![CDATA[Specify the position of the recommendation block depending on the column and vertical alignment. Depending on your current Magento theme not all positions may be available.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>recolize_recommendation/adminhtml_positiononpage</source_model>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </position_on_page>
-                        <shown_items_count translate="label comment">
-                            <label>Items to show at once</label>
-                            <comment><![CDATA[How many items should be visible to the user in the recommendation block?<br />Please note that this setting should be chosen depending on the <em>position on page</em>. Usually for a position in the main column ca. 5 - 8 visible items are recommended. In contrast in the left or right column displaying only 1 item at a time might be more attractive.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </shown_items_count>
-                        <maximum_recommended_items translate="label comment">
-                            <label>Maximum recommended items</label>
-                            <comment><![CDATA[Specify the maximum number of recommended items that should be shown in total.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </maximum_recommended_items>
-                    </fields>
-                </order_success_page>
-                <customer_account_page>
-                    <label>Customer account page recommendation configuration</label>
-                    <sort_order>50</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <active translate="label comment">
-                            <label>Show recommendations on customer account page</label>
-                            <comment><![CDATA[If enabled product recommendations will be shown on the customer account dashboard page. The configuration can be done by the below mentioned options.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </active>
-                        <title translate="label comment">
-                            <label>Title</label>
-                            <comment><![CDATA[Optionally specify the title of the recommendation block, e.g. 'Customers who bought this also bought..'. If left empty the block shows no title above the recommended products.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </title>
-                        <position_on_page translate="label comment">
-                            <label>Position on page</label>
-                            <comment><![CDATA[Specify the position of the recommendation block depending on the column and vertical alignment. Depending on your current Magento theme not all positions may be available.]]></comment>
-                            <frontend_type>select</frontend_type>
-                            <source_model>recolize_recommendation/adminhtml_positiononpage</source_model>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </position_on_page>
-                        <shown_items_count translate="label comment">
-                            <label>Items to show at once</label>
-                            <comment><![CDATA[How many items should be visible to the user in the recommendation block?<br />Please note that this setting should be chosen depending on the <em>position on page</em>. Usually for a position in the main column ca. 5 - 8 visible items are recommended. In contrast in the left or right column displaying only 1 item at a time might be more attractive.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </shown_items_count>
-                        <maximum_recommended_items translate="label comment">
-                            <label>Maximum recommended items</label>
-                            <comment><![CDATA[Specify the maximum number of recommended items that should be shown in total.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><active>1</active></depends>
-                        </maximum_recommended_items>
-                    </fields>
-                </customer_account_page>
+                </product_feed>
             </groups>
         </recolize_recommendation_engine>
     </sections>
