@@ -145,7 +145,7 @@
                 <enable_export>1</enable_export>
                 <file_path>/media</file_path>
                 <cron_schedule>34 3 * * *</cron_schedule>
-                <exclude_product_attributes>description</exclude_product_attributes>
+                <exclude_product_attributes>description,meta_description</exclude_product_attributes>
             </product_feed>
         </recolize_recommendation_engine>
     </default>
@@ -153,10 +153,10 @@
         <jobs>
             <recolize_recommendation_engine_cronjob>
                 <schedule>
-                    <cron_expr>20 3 * * *</cron_expr>
+                    <config_path>recolize_recommendation_engine/product_feed/cron_schedule</config_path>
                 </schedule>
                 <run>
-                    <model>recolize_recommendation_engine/observer::startCronjob</model>
+                    <model>recolize_recommendation_engine/feed::generate</model>
                 </run>
             </recolize_recommendation_engine_cronjob>
         </jobs>
