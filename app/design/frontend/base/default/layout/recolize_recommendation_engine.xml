@@ -22,4 +22,15 @@
  */
 //-->
 <layout>
+    <default>
+        <reference name="after_body_start">
+            <block type="core/template" name="recolize.recommendation.engine.javascript.snippet" template="recolize/recommendation_engine/javascript_snippet.phtml" before="-" />
+        </reference>
+    </default>
+
+    <checkout_onepage_success>
+        <reference name="after_body_start">
+            <block type="core/template" name="recolize.recommendation.engine.checkout.success" template="recolize/recommendation_engine/checkout_success.phtml" before="-" />
+        </reference>
+    </checkout_onepage_success>
 </layout>

@@ -1,0 +1,17 @@
+<?php
+$orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+$order = Mage::getModel('sales/order')->loadByIncrementId($orderId);
+$orderItems = $order->getAllItems();
+?>
+
+<div style="display: none">
+    <script type="text/javascript">
+        var RecolizeParameters = {};
+        RecolizeParameters['itemAction'] = 'sale';
+        RecolizeParameters['saleData'] = {};
+
+        <?php foreach ($orderItems as $orderItem): ?>
+            RecolizeParameters['saleData']['<?php echo $orderItem->getProductId() ?>'] = '<?php echo $orderItem->getRowTotal() ?>'
+        <?php endforeach; ?>
+    </script>
+</div>
