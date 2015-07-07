@@ -1,3 +1,5 @@
-<div style="display: none">
-    <?php echo Mage::getStoreConfig('recolize_recommendation_engine/general/javascript_snippet'); ?>
-</div>
+<?php if (Mage::getStoreConfig('recolize_recommendation_engine/general/enable_extension') == true): ?>
+    <div style="display: none">
+        <?php echo Mage::getStoreConfig('recolize_recommendation_engine/general/javascript_snippet'); ?>
+    </div>
+<?php endif; ?>

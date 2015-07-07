@@ -59,6 +59,17 @@
                 </recolize_recommendation_engine>
             </updates>
         </layout>
+        <events>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <recolize_recommendation_engine_product_add_to_cart>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>addToCart</method>
+                    </recolize_recommendation_engine_product_add_to_cart>
+                </observers>
+            </checkout_cart_product_add_after>
+        </events>
     </frontend>
     <adminhtml>
         <translate>

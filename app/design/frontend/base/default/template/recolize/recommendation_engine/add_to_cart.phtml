@@ -1,0 +1,14 @@
+<?php if (Mage::getStoreConfig('recolize_recommendation_engine/general/enable_extension') == true): ?>
+    <?php if (Mage::getSingleton('recolize_recommendation_engine/session')->getIsProductAddedToCart() === true): ?>
+
+    <div style="display: none">
+        <script type="text/javascript">
+            var RecolizeParameters = {};
+            RecolizeParameters['itemAction'] = 'add_to_cart';
+            RecolizeParameters['clickedItemId'] = <?php echo Mage::getModel('recolize_recommendation_engine/session')->getProductId(); ?>
+        </script>
+    </div>
+
+    <?php Mage::getSingleton('recolize_recommendation_engine/session')->clear(); ?>
+    <?php endif; ?>
+<?php endif; ?>
