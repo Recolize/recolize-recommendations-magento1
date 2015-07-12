@@ -24,7 +24,7 @@
 <config>
     <modules>
         <Recolize_RecommendationEngine>
-            <version>1.0.8</version>
+            <version>2.0.0</version>
         </Recolize_RecommendationEngine>
     </modules>
     <global>
@@ -50,44 +50,6 @@
                 <class>Recolize_RecommendationEngine_Block</class>
             </recolize_recommendation_engine>
         </blocks>
-        <events>
-            <catalog_controller_product_view>
-                <observers>
-                    <recolize_recommendation_engine_product_view>
-                        <type>singleton</type>
-                        <class>recolize_recommendation_engine/observer</class>
-                        <method>updateRecommendations</method>
-                    </recolize_recommendation_engine_product_view>
-                </observers>
-            </catalog_controller_product_view>
-            <checkout_cart_product_add_after>
-                <observers>
-                    <recolize_recommendation_engine_product_add_to_cart>
-                        <type>singleton</type>
-                        <class>recolize_recommendation_engine/observer</class>
-                        <method>updateRecommendations</method>
-                    </recolize_recommendation_engine_product_add_to_cart>
-                </observers>
-            </checkout_cart_product_add_after>
-            <sales_quote_remove_item>
-                <observers>
-                    <recolize_recommendation_engine_product_remove_from_cart>
-                        <type>singleton</type>
-                        <class>recolize_recommendation_engine/observer</class>
-                        <method>updateRecommendations</method>
-                    </recolize_recommendation_engine_product_remove_from_cart>
-                </observers>
-            </sales_quote_remove_item>
-            <sales_order_place_after>
-                <observers>
-                    <recolize_recommendation_engine_product_sale>
-                        <type>singleton</type>
-                        <class>recolize_recommendation_engine/observer</class>
-                        <method>updateRecommendations</method>
-                    </recolize_recommendation_engine_product_sale>
-                </observers>
-            </sales_order_place_after>
-        </events>
     </global>
     <frontend>
         <layout>
@@ -97,26 +59,6 @@
                 </recolize_recommendation_engine>
             </updates>
         </layout>
-        <events>
-            <controller_action_postdispatch_review_product_post>
-                <observers>
-                    <recolize_recommendation_engine_product_review>
-                        <type>singleton</type>
-                        <class>recolize_recommendation_engine/observer</class>
-                        <method>updateRecommendations</method>
-                    </recolize_recommendation_engine_product_review>
-                </observers>
-            </controller_action_postdispatch_review_product_post>
-            <controller_action_predispatch>
-                <observers>
-                    <recolize_recommendation_engine_engine_item_click>
-                        <type>singleton</type>
-                        <class>recolize_recommendation_engine/observer</class>
-                        <method>trackRecommendationEngineClickEvent</method>
-                    </recolize_recommendation_engine_engine_item_click>
-                </observers>
-            </controller_action_predispatch>
-        </events>
     </frontend>
     <adminhtml>
         <translate>
@@ -143,11 +85,18 @@
             </general>
             <product_feed>
                 <enable_export>1</enable_export>
-                <file_path>/media</file_path>
                 <cron_schedule>34 3 * * *</cron_schedule>
-                <exclude_product_attributes>description,meta_description</exclude_product_attributes>
             </product_feed>
         </recolize_recommendation_engine>
+        <general>
+            <file>
+                <importexport_local_valid_paths>
+                    <available>
+                        <media_csv>media/*.csv</media_csv>
+                    </available>
+                </importexport_local_valid_paths>
+            </file>
+        </general>
     </default>
     <crontab>
         <jobs>

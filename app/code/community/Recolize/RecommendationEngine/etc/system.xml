@@ -141,16 +141,6 @@ Mh9NJiJDpR9dx+J/HMEc3NRXgooAAAAASUVORK5CYII=
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enable_export>
-                        <file_path translate="label comment">
-                            <label>Path to the Product Feed</label>
-                            <comment><![CDATA[Path relative to the Magento root folder where the product export file will be saved to. This directory must be writable for the webservice user.]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <depends><enable_export>1</enable_export></depends>
-                        </file_path>
                     </fields>
                 </product_feed>
             </groups>

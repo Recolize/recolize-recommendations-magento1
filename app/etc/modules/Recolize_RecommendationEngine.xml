@@ -26,6 +26,9 @@
         <Recolize_RecommendationEngine>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <Mage_Dataflow/>
+            </depends>
         </Recolize_RecommendationEngine>
     </modules>
 </config>
