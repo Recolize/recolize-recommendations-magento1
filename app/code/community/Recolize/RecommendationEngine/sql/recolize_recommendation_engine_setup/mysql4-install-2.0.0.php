@@ -1,6 +1,6 @@
 <?php
 
-/* @var $installer Mage_Core_Model_Resource_Setup */
+/** @var $installer Mage_Core_Model_Resource_Setup */
 $installer = $this;
 
 $installer->startSetup();
@@ -12,7 +12,7 @@ $profileXml = <<<EOT
     <var name="filter/status"><![CDATA[1]]></var>
 </action>
 
-<action type="catalog/convert_parser_product" method="unparse">
+<action type="recolize_recommendation_engine/convert_parser_product" method="unparse">
     <var name="store"><![CDATA[%d]]></var>
     <var name="url_field"><![CDATA[1]]></var>
 </action>
@@ -33,8 +33,12 @@ $profileXml = <<<EOT
 </action>
 EOT;
 
-$stores = Mage::app()->getStores();
-foreach ($stores as $store) {
+// Create one Dataflow profile for each store.
+// As the stores are initialized after the sql scripts we cannot use Mage::app()->getStores() for store collection.
+$storeCollection = Mage::getModel('core/store')->getCollection()
+    ->addFieldToFilter('is_active', array('eq' => 1))
+    ->setLoadDefault(false);
+foreach ($storeCollection as $store) {
     /** @var Mage_Core_Model_Store $store */
     if ($store->getIsActive() == false) {
         continue;
