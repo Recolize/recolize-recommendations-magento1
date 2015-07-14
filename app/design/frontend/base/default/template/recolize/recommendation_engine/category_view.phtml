@@ -1,0 +1,12 @@
+<?php if (Mage::getStoreConfig('recolize_recommendation_engine/general/enable_extension') == true): ?>
+    <?php $currentProductId = Mage::registry('current_product')->getId(); ?>
+
+    <div style="display: none">
+        <script type="text/javascript">
+            var RecolizeParameters = {};
+            //@TODO change 'itemDetail' to 'item-detail'?
+            RecolizeParameters['specialPageType'] = 'itemDetail';
+            RecolizeParameters['currentItemId'] = '<?php echo $currentProductId ?>';
+        </script>
+    </div>
+<?php endif; ?>
