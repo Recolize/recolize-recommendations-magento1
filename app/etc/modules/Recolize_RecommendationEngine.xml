@@ -1,24 +1,16 @@
 <?xml version="1.0"?>
 <!--
 /**
- * BESUGRE Recommendation module file
+ * Recolize GmbH
  *
  * @section LICENSE
- * This source file is subject to the EULA that is bundled with this package in the file LICENSE.txt.
- * It is also available on our website: http://www.besugre.com/BESUGRE_LICENSE.txt
+ * This source file is subject to the GNU General Public License Version 3 (GPLv3).
  *
- * If you did not receive a copy of the license and are unable to
- * obtain it, please send an email to service@besugre.com so we can send you a copy immediately.
- *
- * This software is distributed under a commercial license.
- * Any redistribution, copy or direct modification is explicitly not allowed.
- *
- * @category Besugre
- * @package Besugre_Recommendation
- * @author Michael Stork <m.stork@besugre.com>
- * @author Christoph Massmann <c.massmann@besugre.com>
- * @copyright 2013-2014 BESUGRE (http://www.besugre.com)
- * @license http://www.besugre.com/BESUGRE_LICENSE.txt commercial software license
+ * @category Recolize
+ * @package Recolize_RecommendationEngine
+ * @author Recolize GmbH <service@recolize.com>
+ * @copyright 2015 Recolize GmbH (http://www.recolize.com)
+ * @license http://opensource.org/licenses/GPL-3.0 GNU General Public License Version 3 (GPLv3).
  */
 //-->
 <config>
