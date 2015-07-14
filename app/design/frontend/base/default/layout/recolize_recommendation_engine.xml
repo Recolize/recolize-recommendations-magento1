@@ -29,6 +29,12 @@
         </reference>
     </default>
 
+    <catalog_category_view>
+        <reference name="after_body_start">
+            <block type="core/template" name="recolize.recommendation.engine.category.view" template="recolize/recommendation_engine/category_view.phtml" before="-" />
+        </reference>
+    </catalog_category_view>
+
     <catalog_product_view>
         <reference name="after_body_start">
             <block type="core/template" name="recolize.recommendation.engine.product.view" template="recolize/recommendation_engine/product_view.phtml" before="-" />
