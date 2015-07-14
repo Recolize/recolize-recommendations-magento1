@@ -24,5 +24,24 @@
 .content-header-floating .content-header h3.recolizeRecommendationEngineSectionHeader img,
 #page\:main-container .columns ul.tabs a.recolizeRecommendationEngineSection img {
     margin-left: -10px;
-    vertical-align: middle;
+}
+
+#page\:main-container .columns ul.tabs a.recolizeRecommendationEngineSection img,
+#page\:main-container #content .content-header h3.recolizeRecommendationEngineSectionHeader img,
+.content-header-floating .content-header h3.recolizeRecommendationEngineSectionHeader img,
+#page\:main-container .columns ul.tabs a.recolizeRecommendationEngineSection div,
+#page\:main-container #content .content-header h3.recolizeRecommendationEngineSectionHeader div,
+.content-header-floating .content-header h3.recolizeRecommendationEngineSectionHeader div {
+    float: left;
+}
+
+#page\:main-container .columns ul.tabs a.recolizeRecommendationEngineSection span {
+    overflow: auto;
+}
+
+#page\:main-container .columns ul.tabs a.recolizeRecommendationEngineSection div,
+#page\:main-container #content .content-header h3.recolizeRecommendationEngineSectionHeader div,
+.content-header-floating .content-header h3.recolizeRecommendationEngineSectionHeader div {
+    margin-top: 10px;
+    margin-left: 7px;
 }

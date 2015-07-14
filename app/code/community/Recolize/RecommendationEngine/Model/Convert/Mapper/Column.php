@@ -73,7 +73,7 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
      *
      * @see Mage_Dataflow_Model_Convert_Mapper_Column::map()
      *
-     * @return Recolize_RecommendationEngine_Model_DataFlow_Convert_Mapper_Column
+     * @return Recolize_RecommendationEngine_Model_Convert_Mapper_Column
      */
     public function map()
     {
