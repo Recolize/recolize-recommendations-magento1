@@ -1,4 +1,4 @@
-<?php if (Mage::getStoreConfig('recolize_recommendation_engine/general/enable_extension') == true): ?>
+<?php if (Mage::getStoreConfigFlag('recolize_recommendation_engine/general/enable_extension') === true): ?>
     <?php
     $orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
     $order = Mage::getModel('sales/order')->loadByIncrementId($orderId);

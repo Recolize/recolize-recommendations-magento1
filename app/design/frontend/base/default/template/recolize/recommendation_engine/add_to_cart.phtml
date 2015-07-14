@@ -1,4 +1,4 @@
-<?php if (Mage::getStoreConfig('recolize_recommendation_engine/general/enable_extension') == true): ?>
+<?php if (Mage::getStoreConfigFlag('recolize_recommendation_engine/general/enable_extension') === true): ?>
     <?php if (Mage::getSingleton('recolize_recommendation_engine/session')->getIsProductAddedToCart() === true): ?>
 
     <div style="display: none">
