@@ -77,7 +77,7 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
      */
     public function map()
     {
-        $batchModel  = $this->getBatchModel();
+        $batchModel = $this->getBatchModel();
         $batchExport = $this->getBatchExportModel();
 
         $batchExportIds = $batchExport
