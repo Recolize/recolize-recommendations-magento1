@@ -37,3 +37,7 @@
     margin-top: 10px;
     margin-left: 7px;
 }
+
+#recolize_recommendation_engine_general #row_recolize_recommendation_engine_general_note .note {
+    background: none;
+}
