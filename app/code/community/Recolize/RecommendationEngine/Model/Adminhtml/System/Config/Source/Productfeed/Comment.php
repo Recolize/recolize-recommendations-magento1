@@ -28,7 +28,7 @@ class Recolize_RecommendationEngine_Model_Adminhtml_System_Config_Source_Product
             $commentString .= sprintf(
                 '<b>%s</b>: %s<br />',
                 $store->getName(),
-                Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . Mage::getModel('recolize_recommendation_engine/feed')->getFeedFileName($store)
+                Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . Mage::getSingleton('recolize_recommendation_engine/feed')->getFeedFileName($store)
             );
         }
         $commentString .= '<br />' . Mage::helper('recolize_recommendation_engine')->__('You can set this setting to \'No\' if you already have other product feeds, like Google Shopping, CSV-based product exports, etc. Then you have to enter these feed urls into the <a href="https://tool.recolize.com/domains" target="_blank">Recolize Tool</a>');
