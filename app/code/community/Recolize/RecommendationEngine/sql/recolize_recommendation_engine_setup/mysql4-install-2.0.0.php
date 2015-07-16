@@ -29,7 +29,7 @@ $profileXml = <<<EOT
 <action type="dataflow/convert_adapter_io" method="save">
     <var name="type">file</var>
     <var name="path">media/</var>
-    <var name="filename"><![CDATA[product-export-%s.csv]]></var>
+    <var name="filename"><![CDATA[%s]]></var>
 </action>
 EOT;
 
@@ -44,9 +44,11 @@ foreach ($storeCollection as $store) {
         continue;
     }
 
+    $feedFileName = Mage::getModel('recolize_recommendation_engine/feed')->getFeedFilename($store);
+
     $profile = Mage::getModel('dataflow/profile')
         ->setName(Recolize_RecommendationEngine_Model_Feed::DATAFLOW_PROFILE_NAME_PREFIX . ' ' . $store->getName())
-        ->setActionsXml(sprintf($profileXml, $store->getId(), $store->getId(), uniqid(time()) . '-' . $store->getCode()))
+        ->setActionsXml(sprintf($profileXml, $store->getId(), $store->getId(), $feedFileName))
         ->save();
 }
 

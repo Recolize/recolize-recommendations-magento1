@@ -37,6 +37,19 @@ class Recolize_RecommendationEngine_Model_Feed extends Mage_Core_Model_Abstract
     }
 
     /**
+     * Return the product export feed name.
+     *
+     * @param Mage_Core_Model_Store $store The store to get the file name for.
+     *
+     * @return string
+     * @throws Mage_Core_Exception
+     */
+    public function getFeedFilename(Mage_Core_Model_Store $store)
+    {
+        return sprintf('product-export-%s.csv', md5($store->getId() . '#' . $store->getName() . '#' . $store->getCode()) . '-' . $store->getCode());
+    }
+
+    /**
      * Return the Recolize DataFlow profiles.
      *
      * @return Mage_Dataflow_Model_Resource_Profile_Collection
