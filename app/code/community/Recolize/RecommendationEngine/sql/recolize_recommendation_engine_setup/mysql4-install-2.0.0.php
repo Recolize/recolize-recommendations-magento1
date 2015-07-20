@@ -63,4 +63,11 @@ foreach ($storeCollection as $store) {
         ->save();
 }
 
+// Create cron schedule for the first feed generation
+Mage::getModel('cron/schedule')
+    ->setJobCode('recolize_recommendation_engine_cronjob')
+    ->setScheduledAt(strftime('%Y-%m-%d %H:%M', time()))
+    ->setStatus(Mage_Cron_Model_Schedule::STATUS_PENDING)
+    ->save();
+
 $installer->endSetup();
