@@ -35,11 +35,18 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
     protected $_batchImport;
 
     /**
-     * The image attributes where URL is rewritten.
+     * The small_image attribute name.
      *
-     * @var array
+     * @var string
      */
-    protected $_imageAttributes = array('image', 'small_image', 'thumbnail');
+    protected $_smallImageAttribute = 'small_image';
+
+    /**
+     * The image attribute name.
+     *
+     * @var string
+     */
+    protected $_imageAttribute = 'image';
 
     /**
      * The name of the category ids attribute.
@@ -101,9 +108,9 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
             $row = $batchExport->getBatchData();
             // Apply attribute specific transformations
             foreach ($row as $attributeName => $attributeValue) {
-                // Add full URL for image attributes.
-                if (in_array($attributeName, $this->_imageAttributes) === true) {
-                    $row[$attributeName] = Mage::getModel('catalog/product_media_config')->getMediaUrl($attributeValue);
+                // Add full URL for image attribute.
+                if ($attributeName === $this->_smallImageAttribute) {
+                    $row[$this->_imageAttribute] = (string)Mage::helper('catalog/image')->init(null, $attributeName, $attributeValue);
                 }
 
                 // Add category names instead of ids.
