@@ -35,6 +35,10 @@ class Recolize_RecommendationEngine_Model_Feed extends Mage_Core_Model_Abstract
             return $this;
         }
 
+        // Required for Magento 1.5.x
+        $adminUserModel = Mage::getModel('admin/user')->setUserId(0);
+        Mage::getSingleton('admin/session')->setUser($adminUserModel);
+
         foreach ($this->getFeedProfileCollection() as $profileModel) {
             /** @var Mage_DataFlow_Model_Profile $profileModel */
             try {

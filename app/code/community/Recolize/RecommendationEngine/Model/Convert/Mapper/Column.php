@@ -108,9 +108,13 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
             $row = $batchExport->getBatchData();
             // Apply attribute specific transformations
             foreach ($row as $attributeName => $attributeValue) {
+                if (empty($attributeValue) === true) {
+                    continue;
+                }
+
                 // Add full URL for image attribute.
                 if ($attributeName === $this->_smallImageAttribute) {
-                    $row[$this->_imageAttribute] = (string)Mage::helper('catalog/image')->init(null, $attributeName, $attributeValue);
+                    $row[$this->_imageAttribute] = (string) Mage::helper('catalog/image')->init(null, $attributeName, $attributeValue);
                 }
 
                 // Add category names instead of ids.
