@@ -114,7 +114,7 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
 
                 // Add full URL for image attribute.
                 if ($attributeName === $this->_smallImageAttribute) {
-                    $row[$this->_imageAttribute] = (string) Mage::helper('catalog/image')->init(null, $attributeName, $attributeValue);
+                    $row[$this->_imageAttribute] = (string) Mage::helper('catalog/image')->init(Mage::getSingleton('catalog/product'), $attributeName, $attributeValue);
                 }
 
                 // Add category names instead of ids.
