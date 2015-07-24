@@ -35,13 +35,6 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
     protected $_batchImport;
 
     /**
-     * The small_image attribute name.
-     *
-     * @var string
-     */
-    protected $_smallImageAttribute = 'small_image';
-
-    /**
      * The image attribute name.
      *
      * @var string
@@ -112,9 +105,13 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
                     continue;
                 }
 
-                // Add full URL for image attribute.
-                if ($attributeName === $this->_smallImageAttribute) {
-                    $row[$this->_imageAttribute] = (string) Mage::helper('catalog/image')->init(Mage::getSingleton('catalog/product'), $attributeName, $attributeValue);
+                // Generate smaller image and add full URL to export.
+                if ($attributeName === $this->_imageAttribute) {
+                    $row[$this->_imageAttribute] = (string) Mage::helper('catalog/image')->init(Mage::getSingleton('catalog/product'), $attributeName, $attributeValue)
+                        ->constrainOnly(true)
+                        ->keepAspectRatio(true)
+                        ->keepFrame(false)
+                        ->resize(500);
                 }
 
                 // Add category names instead of ids.
