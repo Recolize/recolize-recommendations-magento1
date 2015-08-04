@@ -11,7 +11,7 @@
  * @copyright 2015 Recolize GmbH (http://www.recolize.com)
  * @license http://opensource.org/licenses/GPL-3.0 GNU General Public License Version 3 (GPLv3).
  */
-class Recolize_RecommendationEngine_Model_Adminhtml_System_Config_Source_Productfeed_Comment extends Mage_Core_Model_Config_Data
+class Recolize_RecommendationEngine_Model_Adminhtml_System_Config_Source_Feed extends Mage_Core_Model_Config_Data
 {
     /**
      * Return the dynamic comment for the Recolize product feed export.

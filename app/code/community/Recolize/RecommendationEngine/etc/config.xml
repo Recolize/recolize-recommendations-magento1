@@ -21,11 +21,11 @@
     </modules>
     <global>
         <resources>
-            <recolize_recommendation_engine_setup>
+            <recolize_re_setup>
                 <setup>
                     <module>Recolize_RecommendationEngine</module>
                 </setup>
-            </recolize_recommendation_engine_setup>
+            </recolize_re_setup>
         </resources>
         <models>
             <recolize_recommendation_engine>
