@@ -42,6 +42,11 @@ class Recolize_RecommendationEngine_Model_Feed extends Mage_Core_Model_Abstract
         foreach ($this->getFeedProfileCollection() as $profileModel) {
             /** @var Mage_DataFlow_Model_Profile $profileModel */
             try {
+                //The dataflow core module always uses getSingleton for the dataflow batch model instance.
+                //Therefore we have to remove the existing instance with every profile run, because otherwise
+                //the dataflow batch ids for the different profile runs keep the same, and the whole data of
+                //all profile runs get aggregated with every next profile run (within one cron run).
+                Mage::unregister('_singleton/dataflow/batch');
                 $profileModel->run();
             } catch (Exception $exception) {
                 Mage::logException($exception);
