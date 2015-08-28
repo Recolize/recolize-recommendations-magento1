@@ -60,8 +60,7 @@ foreach ($storeCollection as $store) {
     }
 
     $feedFileName = Mage::getModel('recolize_recommendation_engine/feed')->getFeedFilename($store);
-
-    $profileName = Recolize_RecommendationEngine_Model_Feed::DATAFLOW_PROFILE_NAME_PREFIX . ' ' . $store->getName();
+    $profileName = Mage::getModel('recolize_recommendation_engine/feed')->getFeedProfileName($store);
 
     $profile = Mage::getModel('dataflow/profile')->load($profileName, 'name')
         ->setName($profileName)

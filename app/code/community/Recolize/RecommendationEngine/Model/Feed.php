@@ -65,6 +65,18 @@ class Recolize_RecommendationEngine_Model_Feed extends Mage_Core_Model_Abstract
     }
 
     /**
+     * Return a unique name for the DataFlow profile for the given store.
+     *
+     * @param Mage_Core_Model_Store $store
+     *
+     * @return string
+     */
+    public function getFeedProfileName(Mage_Core_Model_Store $store)
+    {
+        return self::DATAFLOW_PROFILE_NAME_PREFIX . ' ' . $store->getName() . '/' . $store->getCode();
+    }
+
+    /**
      * Return the Recolize DataFlow profiles.
      *
      * @return Mage_Dataflow_Model_Resource_Profile_Collection
