@@ -18,7 +18,7 @@
     <script type="text/javascript">
         var RecolizeParameters = {};
         RecolizeParameters['itemAction'] = 'add_to_cart';
-        RecolizeParameters['clickedItemId'] = <?php echo Mage::getModel('recolize_recommendation_engine/session')->getProductId(); ?>
+        RecolizeParameters['clickedItemId'] = '<?php echo Mage::getModel('recolize_recommendation_engine/session')->getProductId(); ?>';
         Recolize.Recommendation.Api.request();
     </script>
 
