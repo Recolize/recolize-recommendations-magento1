@@ -21,8 +21,9 @@ foreach ($storeCollection as $store) {
         continue;
     }
 
-    $feedFileName = Mage::getModel('recolize_recommendation_engine/feed')->getFeedFilename($store);
-    $profileName = Mage::getModel('recolize_recommendation_engine/feed')->getFeedProfileName($store);
+    $feedModel = Mage::getModel('recolize_recommendation_engine/feed');
+    $feedFileName = $feedModel->getFeedFilename($store);
+    $profileName = $feedModel->getFeedProfileName($store);
 
     $profile = Mage::getModel('dataflow/profile')->load($profileName, 'name');
 
