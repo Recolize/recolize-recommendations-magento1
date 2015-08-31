@@ -28,6 +28,12 @@ foreach ($storeCollection as $store) {
     $profile = Mage::getModel('dataflow/profile')->load($profileName, 'name');
 
     if ($profile->isEmpty() === false) {
+        //The dataflow core module always uses getSingleton for the dataflow batch model instance.
+        //Therefore we have to remove the existing instance with every profile run, because otherwise
+        //the dataflow batch ids for the different profile runs keep the same, and the whole data of
+        //all profile runs get aggregated with every next profile run (within one cron run).
+        Mage::unregister('_singleton/dataflow/batch');
+
         $profile->run();
     }
 }
