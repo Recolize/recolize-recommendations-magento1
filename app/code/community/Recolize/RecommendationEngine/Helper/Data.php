@@ -14,7 +14,7 @@
 class Recolize_RecommendationEngine_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
-     * Returns whether the BESUGRE Recommendation extension is enabled in configuration or not.
+     * Returns whether the Recolize Recommendation extension is enabled in configuration or not.
      *
      * @return boolean
      */
