@@ -29,4 +29,21 @@ class Recolize_RecommendationEngine_Model_Observer
 
         return $this;
     }
+
+    /**
+     * Called, if a product was successfully added to the wishlist.
+     * Saves the necessary add to wishlist action data to the Recolize session namespace.
+     *
+     * Event: wishlist_add_product
+     *
+     * @param Varien_Event_Observer $eventObject event object
+     * @return Recolize_RecommendationEngine_Model_Observer chaining
+     */
+    public function addToWishlist(Varien_Event_Observer $eventObject)
+    {
+        Mage::getSingleton('recolize_recommendation_engine/session')->setIsProductAddedToWishlist(true)
+            ->setProductIdInWishlist($eventObject->getProduct()->getId());
+
+        return $this;
+    }
 }
