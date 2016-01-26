@@ -35,9 +35,7 @@ class Recolize_RecommendationEngine_Model_Feed extends Mage_Core_Model_Abstract
             return $this;
         }
 
-        // Required for Magento 1.5.x
-        $adminUserModel = Mage::getModel('admin/user')->setUserId(0);
-        Mage::getSingleton('admin/session')->setUser($adminUserModel);
+        $this->initialize();
 
         foreach ($this->getFeedProfileCollection() as $profileModel) {
             /** @var Mage_DataFlow_Model_Profile $profileModel */
@@ -79,6 +77,23 @@ class Recolize_RecommendationEngine_Model_Feed extends Mage_Core_Model_Abstract
     public function getFeedProfileName(Mage_Core_Model_Store $store)
     {
         return self::DATAFLOW_PROFILE_NAME_PREFIX . ' ' . $store->getName() . '/' . $store->getCode();
+    }
+
+    /**
+     * Initialize the feed exporter.
+     *
+     * @return Recolize_RecommendationEngine_Model_Feed
+     */
+    private function initialize()
+    {
+        @set_time_limit(0);
+        @ini_set('memory_limit', '-1');
+
+        // Required for Magento 1.5.x
+        $adminUserModel = Mage::getModel('admin/user')->setUserId(0);
+        Mage::getSingleton('admin/session')->setUser($adminUserModel);
+
+        return $this;
     }
 
     /**
