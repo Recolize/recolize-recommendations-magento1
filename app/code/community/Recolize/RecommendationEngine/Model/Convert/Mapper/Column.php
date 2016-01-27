@@ -49,6 +49,13 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
     protected $_categoryIdsAttribute = 'category_ids';
 
     /**
+     * The name of the price attribute.
+     *
+     * @var string
+     */
+    protected $_priceAttribute = 'price';
+
+    /**
      * Retrieve Batch model singleton
      *
      * @return Mage_Dataflow_Model_Batch
@@ -127,6 +134,12 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
                     }
 
                     $row[$attributeName] = implode(', ', $categoryNames);
+                }
+
+                // Always export prices with tax.
+                if ($attributeName === $this->_priceAttribute) {
+                    $product = Mage::getModel('catalog/product')->load($row['entity_id']);
+                    $row[$attributeName] = Mage::helper('tax')->getPrice($product, $attributeValue);
                 }
             }
 
