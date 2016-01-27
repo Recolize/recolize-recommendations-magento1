@@ -16,7 +16,7 @@
     <?php $currentProductId = Mage::registry('current_product')->getId(); ?>
 
     <script type="text/javascript">
-        var RecolizeParameters = {};
+        var RecolizeParameters = RecolizeParameters || {};
         RecolizeParameters['specialPageType'] = 'item-detail';
         RecolizeParameters['currentItemId'] = '<?php echo $currentProductId ?>';
     </script>

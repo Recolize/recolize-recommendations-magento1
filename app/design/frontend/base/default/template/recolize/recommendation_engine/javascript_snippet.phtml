@@ -13,5 +13,12 @@
  */
 ?>
 <?php if (Mage::getStoreConfigFlag('recolize_recommendation_engine/general/enable_extension') === true): ?>
+    <?php if (Mage::getSingleton('customer/session')->isLoggedIn() === true): ?>
+        <script type="text/javascript">
+            var RecolizeParameters = RecolizeParameters || {};
+            RecolizeParameters['externalUserId'] = '<?php echo Mage::getSingleton('customer/session')->getCustomerId(); ?>';
+        </script>
+    <?php endif; ?>
+
     <?php echo Mage::getStoreConfig('recolize_recommendation_engine/general/javascript_snippet'); ?>
 <?php endif; ?>

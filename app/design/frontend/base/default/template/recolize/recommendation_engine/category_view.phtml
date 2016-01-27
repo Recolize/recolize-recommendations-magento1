@@ -16,7 +16,7 @@
     <?php $currentCategoryId = Mage::registry('current_category')->getId(); ?>
 
     <script type="text/javascript">
-        var RecolizeParameters = {};
+        var RecolizeParameters = RecolizeParameters || {};
         RecolizeParameters['specialPageType'] = 'category';
         RecolizeParameters['categoryId'] = '<?php echo $currentCategoryId; ?>';
     </script>
