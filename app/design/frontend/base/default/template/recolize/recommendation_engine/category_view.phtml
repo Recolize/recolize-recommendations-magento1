@@ -13,11 +13,11 @@
  */
 ?>
 <?php if (Mage::getStoreConfigFlag('recolize_recommendation_engine/general/enable_extension') === true): ?>
-    <?php $currentCategoryName = Mage::registry('current_category')->getName(); ?>
+    <?php $currentCategoryId = Mage::registry('current_category')->getId(); ?>
 
     <script type="text/javascript">
         var RecolizeParameters = {};
         RecolizeParameters['specialPageType'] = 'category';
-        RecolizeParameters['categoryId'] = '<?php echo $currentCategoryName ?>';
+        RecolizeParameters['categoryId'] = '<?php echo $currentCategoryId; ?>';
     </script>
 <?php endif; ?>

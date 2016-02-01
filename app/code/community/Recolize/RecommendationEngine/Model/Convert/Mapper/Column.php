@@ -42,13 +42,6 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
     protected $_imageAttribute = 'image';
 
     /**
-     * The name of the category ids attribute.
-     *
-     * @var string
-     */
-    protected $_categoryIdsAttribute = 'category_ids';
-
-    /**
      * The name of the price attribute.
      *
      * @var string
@@ -106,6 +99,8 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
             $batchExport->load($batchExportId);
 
             $row = $batchExport->getBatchData();
+            $storeCode = $row['store'];
+
             // Apply attribute specific transformations
             foreach ($row as $attributeName => $attributeValue) {
                 if (empty($attributeValue) === true) {
@@ -121,24 +116,9 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
                         ->resize(500);
                 }
 
-                // Add category names instead of ids.
-                if ($attributeName === $this->_categoryIdsAttribute) {
-                    $categoryNames = array();
-                    $categoryIds = explode(',', $attributeValue);
-                    foreach ($categoryIds as $categoryId) {
-                        /** @var Mage_Catalog_Model_Category $category */
-                        $category = Mage::getModel('catalog/category')->load($categoryId);
-                        if (empty($category) === false) {
-                            $categoryNames[] = $category->getName();
-                        }
-                    }
-
-                    $row[$attributeName] = implode(', ', $categoryNames);
-                }
-
                 // Always export prices with tax.
-                if ($attributeName === $this->_priceAttribute) {
-                    $product = Mage::getModel('catalog/product')->load($row['entity_id']);
+                if ($attributeName === $this->_priceAttribute && $this->_isRecalculatePriceWithTax($storeCode) === true) {
+                    $product = Mage::getModel('catalog/product')->setStore($storeCode)->load($row['entity_id']);
                     $row[$attributeName] = Mage::helper('tax')->getPrice($product, $attributeValue);
                 }
             }
@@ -151,5 +131,22 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
         }
 
         return $this;
+    }
+
+    /**
+     * Check whether it is required to recalculate the product price including tax.
+     *
+     * @param string $storeCode
+     *
+     * @return boolean
+     */
+    protected function _isRecalculatePriceWithTax($storeCode)
+    {
+        $priceDisplayType = Mage::helper('tax')->getPriceDisplayType($storeCode);
+        if ($priceDisplayType !== Mage_Tax_Model_Config::DISPLAY_TYPE_EXCLUDING_TAX && Mage::helper('tax')->priceIncludesTax($storeCode) === false) {
+            return true;
+        }
+
+        return false;
     }
 }
