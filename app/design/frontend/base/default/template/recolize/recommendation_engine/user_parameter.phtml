@@ -17,11 +17,10 @@
 ?>
 <script type="text/javascript">
     var RecolizeParameters = RecolizeParameters || {};
-    RecolizeParameters.User = RecolizeParameters.User || {};
-    RecolizeParameters.User.status = '<?php echo $this->getCustomerStatus(); ?>';
-    RecolizeParameters.User.group = '<?php echo $this->getCustomerGroup(); ?>';
-
+    RecolizeParameters['User'] = RecolizeParameters['User'] || {};
 <?php if ($this->isCustomerLoggedIn() === true): ?>
-    RecolizeParameters.User.id = '<?php echo $this->getCustomerId(); ?>';
+    RecolizeParameters['User']['id'] = '<?php echo $this->getCustomerId(); ?>';
 <?php endif; ?>
+    RecolizeParameters['User']['status'] = '<?php echo $this->getCustomerStatus(); ?>';
+    RecolizeParameters['User']['group'] = '<?php echo $this->getCustomerGroup(); ?>';
 </script>

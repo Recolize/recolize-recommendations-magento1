@@ -14,6 +14,20 @@
 class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_Template
 {
     /**
+     * Customer status for a new customer.
+     *
+     * @var string
+     */
+    const STATUS_NEW_CUSTOMER = 'new_customer';
+
+    /**
+     * Customer status for a returning customer.
+     *
+     * @var string
+     */
+    const STATUS_RETURNING_CUSTOMER = 'returning_customer';
+
+    /**
      * Check if customer is logged in or not.
      *
      * @return boolean
@@ -63,7 +77,7 @@ class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_
             /** @var Mage_Sales_Model_Order $order */
             $order = Mage::getResourceModel('sales/order_collection')
                 ->addFieldToSelect('entity_id')
-                ->addFieldToFilter('customer_id', $this->_getCustomerSession()->getId())
+                ->addFieldToFilter('customer_id', $this->getCustomerId())
                 ->setCurPage(1)
                 ->setPageSize(1)
                 ->getFirstItem();
@@ -72,10 +86,10 @@ class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_
             $lastOrderId = Mage::getSingleton('checkout/session')->getLastOrderId();
         }
 
+        $customerStatus = self::STATUS_NEW_CUSTOMER;
+
         if (empty($lastOrderId) === false) {
-            $customerStatus = $this->__('Returning Customer');
-        } else {
-            $customerStatus = $this->__('New Customer');
+            $customerStatus = self::STATUS_RETURNING_CUSTOMER;
         }
 
         $this->_getCustomerSession()->setCustomerStatus($customerStatus);
