@@ -25,7 +25,7 @@ class Recolize_RecommendationEngine_Model_Observer
     public function addToCart($eventObject)
     {
         Mage::getSingleton('recolize_recommendation_engine/session')->setIsProductAddedToCart(true)
-            ->setProductId($eventObject->getProduct()->getId());
+            ->setProductIdInCart($eventObject->getProduct()->getId());
 
         return $this;
     }

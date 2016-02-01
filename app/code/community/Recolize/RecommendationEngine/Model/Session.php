@@ -24,4 +24,30 @@ class Recolize_RecommendationEngine_Model_Session extends Mage_Core_Model_Sessio
 
         return $this;
     }
+
+    /**
+     * Clears the Recolize add to cart session data.
+     *
+     * @return Recolize_RecommendationEngine_Model_Session chaining
+     */
+    public function clearAddToCartData()
+    {
+        $this->unsIsProductAddedToCart()
+            ->unsProductIdInCart();
+
+        return $this;
+    }
+
+    /**
+     * Clears the Recolize add to wishlist session data.
+     *
+     * @return Recolize_RecommendationEngine_Model_Session chaining
+     */
+    public function clearAddToWishlistData()
+    {
+        $this->unsIsProductAddedToWishlist()
+            ->unsProductIdInWishlist();
+
+        return $this;
+    }
 }

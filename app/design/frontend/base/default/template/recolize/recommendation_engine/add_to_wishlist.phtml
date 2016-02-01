@@ -16,11 +16,11 @@
     <?php if (Mage::getSingleton('recolize_recommendation_engine/session')->getIsProductAddedToWishlist() === true): ?>
 
     <script type="text/javascript">
-        var RecolizeParameters = {};
+        var RecolizeParameters = RecolizeParameters || {};
         RecolizeParameters['itemAction'] = 'add_to_wishlist';
         RecolizeParameters['clickedItemId'] = '<?php echo Mage::getModel('recolize_recommendation_engine/session')->getProductIdInWishlist(); ?>';
     </script>
 
-    <?php Mage::getSingleton('recolize_recommendation_engine/session')->clear(); ?>
+    <?php Mage::getSingleton('recolize_recommendation_engine/session')->clearWishlistData(); ?>
     <?php endif; ?>
 <?php endif; ?>
