@@ -42,6 +42,17 @@
                 <class>Recolize_RecommendationEngine_Block</class>
             </recolize_recommendation_engine>
         </blocks>
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <recolize_recommendation_engine_flush_customer_status_in_session>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>flushCustomerStatusInSession</method>
+                    </recolize_recommendation_engine_flush_customer_status_in_session>
+                </observers>
+            </sales_order_place_after>
+        </events>
     </global>
     <frontend>
         <layout>

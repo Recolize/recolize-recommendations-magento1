@@ -46,4 +46,20 @@ class Recolize_RecommendationEngine_Model_Observer
 
         return $this;
     }
+
+    /**
+     * Flush the customer status that is saved in session after order placement because status might change.
+     *
+     * Event: sales_order_place_after
+     *
+     * @param Varien_Event_Observer $observer event object
+     *
+     * @return Recolize_RecommendationEngine_Model_Observer chaining
+     */
+    public function flushCustomerStatusInSession(Varien_Event_Observer $observer)
+    {
+        Mage::getSingleton('customer/session')->unsCustomerStatus();
+
+        return $this;
+    }
 }
