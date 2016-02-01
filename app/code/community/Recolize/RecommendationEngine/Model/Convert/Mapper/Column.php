@@ -49,6 +49,13 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
     protected $_priceAttribute = 'price';
 
     /**
+     * The name of the special price attribute.
+     *
+     * @var string
+     */
+    protected $_specialPriceAttribute = 'special_price';
+
+    /**
      * Retrieve Batch model singleton
      *
      * @return Mage_Dataflow_Model_Batch
@@ -103,7 +110,7 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
 
             // Apply attribute specific transformations
             foreach ($row as $attributeName => $attributeValue) {
-                if (empty($attributeValue) === true) {
+                if ($attributeValue === null) {
                     continue;
                 }
 
@@ -116,10 +123,17 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
                         ->resize(500);
                 }
 
-                // Always export prices with tax.
-                if ($attributeName === $this->_priceAttribute && $this->_isRecalculatePriceWithTax($storeCode) === true) {
-                    $product = Mage::getModel('catalog/product')->setStore($storeCode)->load($row['entity_id']);
-                    $row[$attributeName] = Mage::helper('tax')->getPrice($product, $attributeValue);
+                // Always export prices with tax and use the special price instead of the price, if available.
+                if ($attributeName === $this->_priceAttribute) {
+                    if ($row[$this->_specialPriceAttribute] !== null) {
+                        $attributeValue = $row[$this->_specialPriceAttribute];
+                        $row[$attributeName] = $attributeValue;
+                    }
+
+                    if($this->_isRecalculatePriceWithTax($storeCode) === true) {
+                        $product = Mage::getModel('catalog/product')->setStore($storeCode)->load($row['entity_id']);
+                        $row[$attributeName] = Mage::helper('tax')->getPrice($product, $attributeValue);
+                    }
                 }
             }
 
