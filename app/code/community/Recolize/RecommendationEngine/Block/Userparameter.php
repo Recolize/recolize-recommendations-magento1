@@ -68,7 +68,7 @@ class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_
      */
     public function getCustomerStatus()
     {
-        $customerStatus = $this->_getCustomerSession()->getCustomerStatus();
+        $customerStatus = Mage::getSingleton('recolize_recommendation_engine/session')->getCustomerStatus();
         if (empty($customerStatus) === false) {
             return $customerStatus;
         }
@@ -92,7 +92,7 @@ class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_
             $customerStatus = self::STATUS_RETURNING_CUSTOMER;
         }
 
-        $this->_getCustomerSession()->setCustomerStatus($customerStatus);
+        Mage::getSingleton('recolize_recommendation_engine/session')->setCustomerStatus($customerStatus);
         return $customerStatus;
     }
 

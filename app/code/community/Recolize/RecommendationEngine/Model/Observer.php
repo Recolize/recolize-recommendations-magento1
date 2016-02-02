@@ -58,7 +58,7 @@ class Recolize_RecommendationEngine_Model_Observer
      */
     public function flushCustomerStatusInSession(Varien_Event_Observer $observer)
     {
-        Mage::getSingleton('customer/session')->unsCustomerStatus();
+        Mage::getSingleton('recolize_recommendation_engine/session')->unsCustomerStatus();
 
         return $this;
     }

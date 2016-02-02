@@ -52,6 +52,24 @@
                     </recolize_recommendation_engine_flush_customer_status_in_session>
                 </observers>
             </sales_order_place_after>
+            <customer_login>
+                <observers>
+                    <recolize_recommendation_engine_flush_customer_status_in_session>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>flushCustomerStatusInSession</method>
+                    </recolize_recommendation_engine_flush_customer_status_in_session>
+                </observers>
+            </customer_login>
+            <customer_logout>
+                <observers>
+                    <recolize_recommendation_engine_flush_customer_status_in_session>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>flushCustomerStatusInSession</method>
+                    </recolize_recommendation_engine_flush_customer_status_in_session>
+                </observers>
+            </customer_logout>
         </events>
     </global>
     <frontend>
