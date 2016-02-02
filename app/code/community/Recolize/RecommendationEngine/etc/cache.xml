@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <placeholders>
+        <recolize_recommendation_engine_user_parameter>
+            <block>recolize_recommendation_engine/userparameter</block>
+            <placeholder>RECOLIZE_RECOMMENDATION_ENGINE_USER_PARAMETER</placeholder>
+            <container>Recolize_RecommendationEngine_Model_Enterprise_PageCache_Container</container>
+        </recolize_recommendation_engine_user_parameter>
+        <recolize_recommendation_engine_add_to_cart>
+            <block>core/template</block>
+            <name>recolize.recommendation.engine.add.to.cart</name>
+            <placeholder>RECOLIZE_RECOMMENDATION_ENGINE_ADD_TO_CART</placeholder>
+            <container>Recolize_RecommendationEngine_Model_Enterprise_PageCache_Container</container>
+        </recolize_recommendation_engine_add_to_cart>
+        <recolize_recommendation_engine_add_to_wishlist>
+            <block>core/template</block>
+            <name>recolize.recommendation.engine.add.to.wishlist</name>
+            <placeholder>RECOLIZE_RECOMMENDATION_ENGINE_ADD_TO_WISHLIST</placeholder>
+            <container>Recolize_RecommendationEngine_Model_Enterprise_PageCache_Container</container>
+        </recolize_recommendation_engine_add_to_wishlist>
+    </placeholders>
+</config>
