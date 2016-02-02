@@ -130,7 +130,7 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
                         $row[$attributeName] = $attributeValue;
                     }
 
-                    if($this->_isRecalculatePriceWithTax($storeCode) === true) {
+                    if ($this->_isRecalculatePriceWithTax($storeCode) === true) {
                         $product = Mage::getModel('catalog/product')->setStore($storeCode)->load($row['entity_id']);
                         $row[$attributeName] = Mage::helper('tax')->getPrice($product, $attributeValue);
                     }
