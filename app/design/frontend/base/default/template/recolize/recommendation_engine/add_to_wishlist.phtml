@@ -21,6 +21,6 @@
         RecolizeParameters['clickedItemId'] = '<?php echo Mage::getModel('recolize_recommendation_engine/session')->getProductIdInWishlist(); ?>';
     </script>
 
-    <?php Mage::getSingleton('recolize_recommendation_engine/session')->clearWishlistData(); ?>
+    <?php Mage::getSingleton('recolize_recommendation_engine/session')->clearAddToWishlistData(); ?>
     <?php endif; ?>
 <?php endif; ?>
