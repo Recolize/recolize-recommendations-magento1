@@ -54,7 +54,9 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
      */
     public function getDefaultCustomerGroup()
     {
-        return Mage::getModel('customer/group')->load(Mage_Customer_Model_Group::NOT_LOGGED_IN_ID)->getCustomerGroupCode();
+        $customerGroupCode = Mage::getModel('customer/group')->load(Mage_Customer_Model_Group::NOT_LOGGED_IN_ID)->getCustomerGroupCode();
+
+        return $this->_replaceSpecialCharacters($customerGroupCode);
     }
 
     /**
@@ -67,7 +69,7 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
         $customerGroupId = $this->_getCustomerSession()->getCustomerGroupId();
         $customerGroupCode = Mage::getModel('customer/group')->load($customerGroupId)->getCustomerGroupCode();
 
-        return $customerGroupCode;
+        return $this->_replaceSpecialCharacters($customerGroupCode);
     }
 
     /**
@@ -108,5 +110,16 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
     protected function _getCustomerSession()
     {
         return Mage::getSingleton('customer/session');
+    }
+
+    /**
+     * Replaces special characters in a given string.
+     *
+     * @param string $text the text with possible special characters
+     * @return string a cleaned text
+     */
+    protected function _replaceSpecialCharacters($text)
+    {
+        return str_replace('\'', '', $text);
     }
 }
