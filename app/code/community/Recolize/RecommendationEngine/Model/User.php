@@ -11,7 +11,7 @@
  * @copyright 2015 Recolize GmbH (http://www.recolize.com)
  * @license http://opensource.org/licenses/GPL-3.0 GNU General Public License Version 3 (GPLv3).
  */
-class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_Template
+class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
 {
     /**
      * Customer status for a new customer.
@@ -48,6 +48,16 @@ class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_
     }
 
     /**
+     * Returns the default customer group.
+     *
+     * @return string the default customer group
+     */
+    public function getDefaultCustomerGroup()
+    {
+        return Mage::getModel('customer/group')->load(Mage_Customer_Model_Group::NOT_LOGGED_IN_ID)->getCustomerGroupCode();
+    }
+
+    /**
      * Returns current customer group.
      *
      * @return string
@@ -68,10 +78,7 @@ class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_
      */
     public function getCustomerStatus()
     {
-        $customerStatus = Mage::getSingleton('recolize_recommendation_engine/session')->getCustomerStatus();
-        if (empty($customerStatus) === false) {
-            return $customerStatus;
-        }
+        $customerStatus = self::STATUS_NEW_CUSTOMER;
 
         if ($this->isCustomerLoggedIn() === true) {
             /** @var Mage_Sales_Model_Order $order */
@@ -86,13 +93,10 @@ class Recolize_RecommendationEngine_Block_Userparameter extends Mage_Core_Block_
             $lastOrderId = Mage::getSingleton('checkout/session')->getLastOrderId();
         }
 
-        $customerStatus = self::STATUS_NEW_CUSTOMER;
-
         if (empty($lastOrderId) === false) {
             $customerStatus = self::STATUS_RETURNING_CUSTOMER;
         }
 
-        Mage::getSingleton('recolize_recommendation_engine/session')->setCustomerStatus($customerStatus);
         return $customerStatus;
     }
 

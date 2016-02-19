@@ -17,7 +17,7 @@
     <default>
         <reference name="after_body_start">
             <block type="core/template" name="recolize.recommendation.engine.javascript.snippet" template="recolize/recommendation_engine/javascript_snippet.phtml" before="-">
-                <block type="recolize_recommendation_engine/userparameter" name="recolize.recommendation.engine.user.parameter" template="recolize/recommendation_engine/user_parameter.phtml" before="-" />
+                <block type="recolize_recommendation_engine/parameter" name="recolize.recommendation.engine.parameter" template="recolize/recommendation_engine/parameter.phtml" before="-" />
             </block>
             <block type="core/template" name="recolize.recommendation.engine.add.to.cart" template="recolize/recommendation_engine/add_to_cart.phtml" before="-" />
             <block type="core/template" name="recolize.recommendation.engine.add.to.wishlist" template="recolize/recommendation_engine/add_to_wishlist.phtml" before="-" />

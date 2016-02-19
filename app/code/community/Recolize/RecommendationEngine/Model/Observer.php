@@ -48,17 +48,43 @@ class Recolize_RecommendationEngine_Model_Observer
     }
 
     /**
-     * Flush the customer status that is saved in session after order placement because status might change.
+     * Updates the user data in the Recolize cookie.
      *
-     * Event: sales_order_place_after
+     * Events: customer_login, sales_order_place_after
      *
      * @param Varien_Event_Observer $observer event object
-     *
      * @return Recolize_RecommendationEngine_Model_Observer chaining
      */
-    public function flushCustomerStatusInSession(Varien_Event_Observer $observer)
+    public function updateUserDataInCookie(Varien_Event_Observer $observer)
     {
-        Mage::getSingleton('recolize_recommendation_engine/session')->unsCustomerStatus();
+        $user = Mage::getModel('recolize_recommendation_engine/user');
+
+        Mage::getModel('recolize_recommendation_engine/cookie')->updateUserData(
+            $user->getCustomerId(),
+            $user->getCustomerStatus(),
+            $user->getCustomerGroup()
+        );
+
+        return $this;
+    }
+
+    /**
+     * Updates the user data in the Recolize cookie after a customer logout.
+     *
+     * Events: customer_logout
+     *
+     * @param Varien_Event_Observer $observer event object
+     * @return Recolize_RecommendationEngine_Model_Observer chaining
+     */
+    public function updateUserDataAfterLogoutInCookie(Varien_Event_Observer $observer)
+    {
+        $user = Mage::getModel('recolize_recommendation_engine/user');
+
+        Mage::getModel('recolize_recommendation_engine/cookie')->updateUserData(
+            null,
+            $user->getCustomerStatus(),
+            $user->getDefaultCustomerGroup()
+        );
 
         return $this;
     }
