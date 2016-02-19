@@ -44,7 +44,7 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
      */
     public function getCustomerId()
     {
-        return $this->_getCustomerSession()->getId();
+        return sha1($this->_getCustomerSession()->getId());
     }
 
     /**
