@@ -82,7 +82,7 @@ class Recolize_RecommendationEngine_Model_Observer
 
         Mage::getModel('recolize_recommendation_engine/cookie')->updateUserData(
             null,
-            $user->getCustomerStatus(),
+            $user->getDefaultCustomerStatus(),
             $user->getDefaultCustomerGroup()
         );
 
