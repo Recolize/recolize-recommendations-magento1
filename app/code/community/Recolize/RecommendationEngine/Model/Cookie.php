@@ -21,6 +21,13 @@ class Recolize_RecommendationEngine_Model_Cookie extends Mage_Core_Model_Cookie
     const COOKIE_NAME = 'recolize_parameter';
 
     /**
+     * The cookie lifetime (browser session based).
+     *
+     * @var integer
+     */
+    const COOKIE_LIFETIME = 0;
+
+    /**
      * Updates the user data in the Recolize cookie.
      *
      * @param string $userId user id
@@ -66,7 +73,7 @@ class Recolize_RecommendationEngine_Model_Cookie extends Mage_Core_Model_Cookie
             }
 
             $cookieValue = Zend_Json::encode(array_replace($cookieValue, $additionalData));
-            $this->set(self::COOKIE_NAME, $cookieValue, null, null, null, null, false);
+            $this->set(self::COOKIE_NAME, $cookieValue, self::COOKIE_LIFETIME, null, null, null, false);
         } catch (Exception $exception) {
 
         }

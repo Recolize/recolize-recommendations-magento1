@@ -30,7 +30,7 @@ class Recolize_RecommendationEngine_Block_Parameter extends Mage_Core_Block_Temp
      */
     public function getDefaultUserStatus()
     {
-        return Mage::getModel('recolize_recommendation_engine/user')->getCustomerStatus();
+        return Mage::getModel('recolize_recommendation_engine/user')->getDefaultCustomerStatus();
     }
 
     /**

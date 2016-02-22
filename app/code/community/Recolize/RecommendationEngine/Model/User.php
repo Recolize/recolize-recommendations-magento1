@@ -38,13 +38,19 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
     }
 
     /**
-     * Get logged in customer id.
+     * Get an encrypted logged in customer id.
      *
-     * @return integer
+     * @return integer|null the encrypted customer id; null, if the customer is not logged in
      */
     public function getCustomerId()
     {
-        return sha1($this->_getCustomerSession()->getId());
+        $internalCustomerId = $this->_getInternalCustomerId();
+
+        if (empty($internalCustomerId) === true) {
+            return $internalCustomerId;
+        }
+
+        return sha1($internalCustomerId);
     }
 
     /**
@@ -80,13 +86,13 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
      */
     public function getCustomerStatus()
     {
-        $customerStatus = self::STATUS_NEW_CUSTOMER;
+        $customerStatus = $this->getDefaultCustomerStatus();
 
         if ($this->isCustomerLoggedIn() === true) {
             /** @var Mage_Sales_Model_Order $order */
             $order = Mage::getResourceModel('sales/order_collection')
                 ->addFieldToSelect('entity_id')
-                ->addFieldToFilter('customer_id', $this->getCustomerId())
+                ->addFieldToFilter('customer_id', $this->_getInternalCustomerId())
                 ->setCurPage(1)
                 ->setPageSize(1)
                 ->getFirstItem();
@@ -103,6 +109,16 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
     }
 
     /**
+     * Returns the default customer status.
+     *
+     * @return string the default customer status
+     */
+    public function getDefaultCustomerStatus()
+    {
+        return self::STATUS_NEW_CUSTOMER;
+    }
+
+    /**
      * Return customer session model.
      *
      * @return Mage_Customer_Model_Session
@@ -110,6 +126,16 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
     protected function _getCustomerSession()
     {
         return Mage::getSingleton('customer/session');
+    }
+
+    /**
+     * Returns the Magento internal customer id if the customer is logged in.
+     *
+     * @return integer|null the internal Magento customer id; null if not available/not logged in
+     */
+    protected function _getInternalCustomerId()
+    {
+        return $this->_getCustomerSession()->getId();
     }
 
     /**
