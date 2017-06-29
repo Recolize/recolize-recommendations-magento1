@@ -108,6 +108,8 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
             $row = $batchExport->getBatchData();
             $storeCode = $row['store'];
 
+            $appEmulation = Mage::getSingleton('core/app_emulation');
+
             // Apply attribute specific transformations
             foreach ($row as $attributeName => $attributeValue) {
                 if ($attributeValue === null) {
@@ -116,11 +118,14 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
 
                 // Generate smaller image and add full URL to export.
                 if ($attributeName === $this->_imageAttribute) {
+                    $initialEnvironmentInfo = $appEmulation->startEnvironmentEmulation($row['store_id']);
                     $row[$this->_imageAttribute] = (string) Mage::helper('catalog/image')->init(Mage::getSingleton('catalog/product'), $attributeName, $attributeValue)
                         ->constrainOnly(true)
                         ->keepAspectRatio(true)
                         ->keepFrame(false)
                         ->resize(500);
+
+                    $appEmulation->stopEnvironmentEmulation($initialEnvironmentInfo);
                 }
 
                 // Always export prices with tax and use the special price instead of the price, if available.
