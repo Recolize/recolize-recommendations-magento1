@@ -15,7 +15,7 @@
 <?php if (Mage::getStoreConfigFlag('recolize_recommendation_engine/general/enable_extension') === true): ?>
     <script type="text/javascript">
         var RecolizeParameters = RecolizeParameters || {};
-        RecolizeParameters['User'] = RecolizeParameters['User'] || {};
+        RecolizeParameters['User'] = RecolizeParameters['User'] || {};
         RecolizeParameters['User']['status'] = '<?php echo $this->getDefaultUserStatus(); ?>';
         RecolizeParameters['User']['group'] = '<?php echo $this->getDefaultUserGroup(); ?>';
 
