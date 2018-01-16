@@ -128,17 +128,11 @@ class Recolize_RecommendationEngine_Model_Convert_Mapper_Column extends Mage_Dat
                     $appEmulation->stopEnvironmentEmulation($initialEnvironmentInfo);
                 }
 
-                // Always export prices with tax and use the special price instead of the price, if available.
-                if ($attributeName === $this->_priceAttribute) {
-                    if ($row[$this->_specialPriceAttribute] !== null) {
-                        $attributeValue = $row[$this->_specialPriceAttribute];
-                        $row[$attributeName] = $attributeValue;
-                    }
-
-                    if ($this->_isRecalculatePriceWithTax($storeCode) === true) {
-                        $product = Mage::getModel('catalog/product')->setStore($storeCode)->load($row['entity_id']);
-                        $row[$attributeName] = Mage::helper('tax')->getPrice($product, $attributeValue);
-                    }
+                // Export prices with tax depending on configuration.
+                if (($attributeName === $this->_priceAttribute || $attributeName === $this->_specialPriceAttribute)
+                    && $this->_isRecalculatePriceWithTax($storeCode) === true) {
+                    $product = Mage::getModel('catalog/product')->setStore($storeCode)->load($row['entity_id']);
+                    $row[$attributeName] = Mage::helper('tax')->getPrice($product, $attributeValue);
                 }
             }
 
