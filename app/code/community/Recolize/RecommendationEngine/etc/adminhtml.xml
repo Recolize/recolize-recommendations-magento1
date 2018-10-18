@@ -18,13 +18,6 @@
         <resources>
             <admin>
                 <children>
-                    <promo>
-                        <children>
-                            <recolize_recommendation_engine>
-                                <title>Recolize Recommendation Engine</title>
-                            </recolize_recommendation_engine>
-                        </children>
-                    </promo>
                     <system>
                         <children>
                             <config>
