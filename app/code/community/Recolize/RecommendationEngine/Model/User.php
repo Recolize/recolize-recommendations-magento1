@@ -28,6 +28,11 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
     const STATUS_RETURNING_CUSTOMER = 'returning_customer';
 
     /**
+     * @var string
+     */
+    const IDENTIFIER_EMAIL = 'email';
+
+    /**
      * Check if customer is logged in or not.
      *
      * @return boolean
@@ -44,7 +49,12 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
      */
     public function getCustomerId()
     {
-        $internalCustomerId = $this->_getInternalCustomerId();
+        $userIdentifier = Mage::getStoreConfig('recolize_recommendation_engine/general/user_identifier');
+        if ($userIdentifier === self::IDENTIFIER_EMAIL) {
+            $internalCustomerId = $this->_getCustomerEmail();
+        } else {
+            $internalCustomerId = $this->_getInternalCustomerId();
+        }
 
         if (empty($internalCustomerId) === true) {
             return $internalCustomerId;
@@ -136,6 +146,14 @@ class Recolize_RecommendationEngine_Model_User extends Mage_Core_Model_Abstract
     protected function _getInternalCustomerId()
     {
         return $this->_getCustomerSession()->getId();
+    }
+
+    /**
+     * @return string
+     */
+    protected function _getCustomerEmail()
+    {
+        return $this->_getCustomerSession()->getCustomer()->getEmail();
     }
 
     /**
