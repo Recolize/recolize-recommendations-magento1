@@ -66,7 +66,10 @@ class Recolize_RecommendationEngine_Model_Cookie extends Mage_Core_Model_Cookie
     protected function _saveCookie($additionalData)
     {
         try {
-            $cookieValue = Zend_Json::decode($this->get(self::COOKIE_NAME));
+            $cookieContents = $this->get(self::COOKIE_NAME);
+            if (empty($cookieContents) === false) {
+                $cookieValue = Zend_Json::decode($cookieContents);
+            }
 
             if (empty($cookieValue) === true) {
                 $cookieValue = array();
@@ -75,7 +78,6 @@ class Recolize_RecommendationEngine_Model_Cookie extends Mage_Core_Model_Cookie
             $cookieValue = Zend_Json::encode(array_replace($cookieValue, $additionalData));
             $this->set(self::COOKIE_NAME, $cookieValue, self::COOKIE_LIFETIME, null, null, null, false);
         } catch (Exception $exception) {
-
         }
 
         return $this;
