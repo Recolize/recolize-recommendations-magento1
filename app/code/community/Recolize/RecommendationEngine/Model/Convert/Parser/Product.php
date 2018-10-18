@@ -33,9 +33,9 @@ class Recolize_RecommendationEngine_Model_Convert_Parser_Product extends Mage_Ca
      */
     private function removeSystemField($fieldName)
     {
-        $entityIdKey = array_search($fieldName, $this->_systemFields);
-        if ($entityIdKey !== false) {
-            unset($this->_systemFields[$entityIdKey]);
+        $systemFieldKey = array_search($fieldName, $this->_systemFields);
+        if ($systemFieldKey !== false) {
+            unset($this->_systemFields[$systemFieldKey]);
         }
 
         return $this;
