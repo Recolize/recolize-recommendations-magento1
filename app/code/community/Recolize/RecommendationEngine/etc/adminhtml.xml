@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BESUGRE Recommendation adminhtml config
+ *
+ * @section LICENSE
+ * This source file is subject to the EULA that is bundled with this package in the file LICENSE.txt.
+ * It is also available on our website: http://www.besugre.com/BESUGRE_LICENSE.txt
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it, please send an email to service@besugre.com so we can send you a copy immediately.
+ *
+ * This software is distributed under a commercial license.
+ * Any redistribution, copy or direct modification is explicitly not allowed.
+ *
+ * @category Besugre
+ * @package Besugre_Recommendation
+ * @author Michael Stork <m.stork@besugre.com>
+ * @author Christoph Massmann <c.massmann@besugre.com>
+ * @copyright 2013-2014 BESUGRE (http://www.besugre.com)
+ * @license http://www.besugre.com/BESUGRE_LICENSE.txt commercial software license
+ */
+//-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <promo>
+                        <children>
+                            <recolize_recommendation_engine>
+                                <title>Recolize Recommendation Engine</title>
+                            </recolize_recommendation_engine>
+                        </children>
+                    </promo>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <recolize_recommendation_engine translate="title">
+                                        <title>Recolize Recommendation Engine</title>
+                                        <sort_order>200</sort_order>
+                                    </recolize_recommendation_engine>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

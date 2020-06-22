@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BESUGRE Recommendation configuration file
+ *
+ * @section LICENSE
+ * This source file is subject to the EULA that is bundled with this package in the file LICENSE.txt.
+ * It is also available on our website: http://www.besugre.com/BESUGRE_LICENSE.txt
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it, please send an email to service@besugre.com so we can send you a copy immediately.
+ *
+ * This software is distributed under a commercial license.
+ * Any redistribution, copy or direct modification is explicitly not allowed.
+ *
+ * @category Besugre
+ * @package Recolize_RecommendationEngine
+ * @author Michael Stork <m.stork@besugre.com>
+ * @author Christoph Massmann <c.massmann@besugre.com>
+ * @copyright 2013-2014 BESUGRE (http://www.besugre.com)
+ * @license http://www.besugre.com/BESUGRE_LICENSE.txt commercial software license
+ */
+//-->
+<config>
+    <modules>
+        <Recolize_RecommendationEngine>
+            <version>1.0.8</version>
+        </Recolize_RecommendationEngine>
+    </modules>
+    <global>
+        <resources>
+            <recolize_recommendation_engine_setup>
+                <setup>
+                    <module>Recolize_RecommendationEngine</module>
+                </setup>
+            </recolize_recommendation_engine_setup>
+        </resources>
+        <models>
+            <recolize_recommendation_engine>
+                <class>Recolize_RecommendationEngine_Model</class>
+            </recolize_recommendation_engine>
+        </models>
+        <helpers>
+            <recolize_recommendation_engine>
+                <class>Recolize_RecommendationEngine_Helper</class>
+            </recolize_recommendation_engine>
+        </helpers>
+        <blocks>
+            <recolize_recommendation_engine>
+                <class>Recolize_RecommendationEngine_Block</class>
+            </recolize_recommendation_engine>
+        </blocks>
+        <events>
+            <catalog_controller_product_view>
+                <observers>
+                    <recolize_recommendation_engine_product_view>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>updateRecommendations</method>
+                    </recolize_recommendation_engine_product_view>
+                </observers>
+            </catalog_controller_product_view>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <recolize_recommendation_engine_product_add_to_cart>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>updateRecommendations</method>
+                    </recolize_recommendation_engine_product_add_to_cart>
+                </observers>
+            </checkout_cart_product_add_after>
+            <sales_quote_remove_item>
+                <observers>
+                    <recolize_recommendation_engine_product_remove_from_cart>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>updateRecommendations</method>
+                    </recolize_recommendation_engine_product_remove_from_cart>
+                </observers>
+            </sales_quote_remove_item>
+            <sales_order_place_after>
+                <observers>
+                    <recolize_recommendation_engine_product_sale>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>updateRecommendations</method>
+                    </recolize_recommendation_engine_product_sale>
+                </observers>
+            </sales_order_place_after>
+        </events>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <recolize_recommendation_engine>
+                    <file>recolize_recommendation_engine.xml</file>
+                </recolize_recommendation_engine>
+            </updates>
+        </layout>
+        <events>
+            <controller_action_postdispatch_review_product_post>
+                <observers>
+                    <recolize_recommendation_engine_product_review>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>updateRecommendations</method>
+                    </recolize_recommendation_engine_product_review>
+                </observers>
+            </controller_action_postdispatch_review_product_post>
+            <controller_action_predispatch>
+                <observers>
+                    <recolize_recommendation_engine_engine_item_click>
+                        <type>singleton</type>
+                        <class>recolize_recommendation_engine/observer</class>
+                        <method>trackRecommendationEngineClickEvent</method>
+                    </recolize_recommendation_engine_engine_item_click>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Recolize_RecommendationEngine>
+                    <files>
+                        <default>Recolize_RecommendationEngine.csv</default>
+                    </files>
+                </Recolize_RecommendationEngine>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <recolize_recommendation_engine>
+                    <file>recolize_recommendation_engine.xml</file>
+                </recolize_recommendation_engine>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <recolize_recommendation_engine>
+            <general>
+                <enable_extension>1</enable_extension>
+            </general>
+            <product_list_page>
+                <active>1</active>
+                <position_on_page>main_column_bottom</position_on_page>
+                <shown_items_count>3</shown_items_count>
+                <maximum_recommended_items>10</maximum_recommended_items>
+            </product_list_page>
+            <product_detail_page>
+                <active>1</active>
+                <position_on_page>main_column_top</position_on_page>
+                <shown_items_count>3</shown_items_count>
+                <maximum_recommended_items>10</maximum_recommended_items>
+            </product_detail_page>
+            <cart_page>
+                <active>0</active>
+                <position_on_page>main_column_top</position_on_page>
+                <shown_items_count>4</shown_items_count>
+                <maximum_recommended_items>10</maximum_recommended_items>
+            </cart_page>
+            <order_success_page>
+                <active>1</active>
+                <position_on_page>main_column_bottom</position_on_page>
+                <shown_items_count>4</shown_items_count>
+                <maximum_recommended_items>10</maximum_recommended_items>
+            </order_success_page>
+            <customer_account_page>
+                <active>1</active>
+                <position_on_page>main_column_bottom</position_on_page>
+                <shown_items_count>4</shown_items_count>
+                <maximum_recommended_items>10</maximum_recommended_items>
+            </customer_account_page>
+        </recolize_recommendation_engine>
+    </default>
+    <crontab>
+        <jobs>
+            <recolize_recommendation_engine_cronjob>
+                <schedule>
+                    <cron_expr>20 3 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>recolize_recommendation_engine/observer::startCronjob</model>
+                </run>
+            </recolize_recommendation_engine_cronjob>
+        </jobs>
+    </crontab>
+</config>

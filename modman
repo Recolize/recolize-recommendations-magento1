@@ -1,0 +1,11 @@
+app/code/community/Recolize/RecommendationEngine  app/code/community/Recolize/RecommendationEngine
+app/etc/modules/Recolize_RecommendationEngine.xml app/etc/modules/Recolize_RecommendationEngine.xml
+app/locale/de_DE/Recolize_RecommendationEngine.csv app/locale/de_DE/Recolize_RecommendationEngine.csv
+app/locale/en_US/Recolize_RecommendationEngine.csv app/locale/en_US/Recolize_RecommendationEngine.csv
+app/design/adminhtml/base/default/template/recolize/recommendation_engine/ app/design/adminhtml/base/default/template/recolize/recommendation_engine/
+app/design/adminhtml/base/default/layout/recolize_recommendation_engine.xml app/design/adminhtml/base/default/layout/recolize_recommendation_engine.xml
+app/design/frontend/base/default/template/recolize/recommendation_engine/ app/design/frontend/base/default/template/recolize/recommendation_engine/
+app/design/frontend/base/default/layout/recolize_recommendation_engine.xml app/design/frontend/base/default/layout/recolize_recommendation_engine.xml
+skin/frontend/base/default/css/recolize/recommendation_engine/ skin/frontend/base/default/css/recolize/recommendation_engine/
+skin/adminhtml/default/default/css/recolize/recommendation_engine skin/adminhtml/default/default/css/recolize/recommendation_engine
+skin/adminhtml/default/default/images/recolize/recommendation_engine skin/adminhtml/default/default/images/recolize/recommendation_engine
