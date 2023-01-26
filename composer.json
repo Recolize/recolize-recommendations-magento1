@@ -1,0 +1,30 @@
+{
+  "name": "recolize/recommendation-engine-magento1",
+  "description": "The Recolize Recommendation Engine extension for Magento 1",
+  "type": "magento-module",
+  "keywords": [
+    "recolize",
+    "recommendation",
+    "magento"
+  ],
+  "homepage": "https://www.recolize.com",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Recolize GmbH",
+      "email": "service@recolize.com",
+      "homepage": "https://www.recolize.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "service@recolize.com"
+  },
+  "require": {
+    "php": "^5.6|^7|^8.0",
+    "magento-hackathon/magento-composer-installer": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  }
+}
