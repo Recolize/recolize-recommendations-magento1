@@ -79,21 +79,16 @@ class Recolize_RecommendationEngine_Model_Feed extends Mage_Core_Model_Abstract
         return self::DATAFLOW_PROFILE_NAME_PREFIX . ' ' . $store->getName() . '/' . $store->getCode();
     }
 
-    /**
-     * Initialize the feed exporter.
-     *
-     * @return Recolize_RecommendationEngine_Model_Feed
-     */
-    private function initialize()
+    private function initialize(): void
     {
         @set_time_limit(0);
         @ini_set('memory_limit', '-1');
 
+        Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
         // Required for Magento 1.5.x
         $adminUserModel = Mage::getModel('admin/user')->setUserId(0);
         Mage::getSingleton('admin/session')->setUser($adminUserModel);
-
-        return $this;
     }
 
     /**
